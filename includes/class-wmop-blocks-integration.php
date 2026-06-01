@@ -103,6 +103,16 @@ final class WMOP_Blocks_Integration implements IntegrationInterface {
 		return [];
 	}
 
+	/** @inheritDoc */
+	public function get_style_handles(): array {
+		return wp_style_is( 'wmop-checkout', 'registered' ) ? [ 'wmop-checkout' ] : [];
+	}
+
+	/** @inheritDoc */
+	public function get_editor_style_handles(): array {
+		return [];
+	}
+
 	/**
 	 * Passes hidden-gateway data to the JS bundle.
 	 *
