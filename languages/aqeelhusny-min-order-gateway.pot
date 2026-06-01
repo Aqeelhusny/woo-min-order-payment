@@ -6,14 +6,18 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-01 08:57+0000\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woo-min-order-payment/\n"
+"POT-Creation-Date: 2026-06-01 09:21+0000\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/aqeelhusny-min-order-gateway/\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: aqeelhusny-min-order-gateway.php:52
+msgid "Aqeel Husny – Minimum Order Per Gateway requires WooCommerce to be active."
+msgstr ""
 
 #: includes/class-wmop-admin.php:50, includes/class-wmop-admin.php:64
 msgid "Minimum Order Rules"
@@ -27,51 +31,51 @@ msgstr ""
 msgid "No payment gateways are registered."
 msgstr ""
 
-#: includes/class-wmop-admin.php:100
+#: includes/class-wmop-admin.php:97
 msgid "Gateway"
 msgstr ""
 
-#: includes/class-wmop-admin.php:101, includes/class-wmop-admin.php:122
+#: includes/class-wmop-admin.php:98, includes/class-wmop-admin.php:119
 msgid "Enabled"
 msgstr ""
 
-#: includes/class-wmop-admin.php:102
+#: includes/class-wmop-admin.php:99
 msgid "Min Required"
 msgstr ""
 
-#: includes/class-wmop-admin.php:104
+#: includes/class-wmop-admin.php:101
 msgid "Threshold"
 msgstr ""
 
-#: includes/class-wmop-admin.php:105
+#: includes/class-wmop-admin.php:102
 msgid "On Fail"
 msgstr ""
 
-#: includes/class-wmop-admin.php:106
+#: includes/class-wmop-admin.php:103
 msgid "Settings"
 msgstr ""
 
-#: includes/class-wmop-admin.php:124
+#: includes/class-wmop-admin.php:121
 msgid "Disabled"
 msgstr ""
 
-#: includes/class-wmop-admin.php:130
+#: includes/class-wmop-admin.php:127
 msgid "No minimum"
 msgstr ""
 
-#: includes/class-wmop-admin.php:142
+#: includes/class-wmop-admin.php:139
 msgid "Not set"
 msgstr ""
 
-#: includes/class-wmop-admin.php:152
+#: includes/class-wmop-admin.php:149
 msgid "Hide"
 msgstr ""
 
-#: includes/class-wmop-admin.php:150
+#: includes/class-wmop-admin.php:147
 msgid "Show disabled"
 msgstr ""
 
-#: includes/class-wmop-admin.php:156
+#: includes/class-wmop-admin.php:153
 msgid "Edit"
 msgstr ""
 
@@ -132,8 +136,4 @@ msgstr ""
 
 #: includes/class-wmop-settings.php:93
 msgid "Placeholders: {min} = formatted minimum, {currency} = currency code, {gateway} = gateway name."
-msgstr ""
-
-#: woo-min-order-payment.php:52
-msgid "Aqeel Husny – Minimum Order Per Gateway requires WooCommerce to be active."
 msgstr ""

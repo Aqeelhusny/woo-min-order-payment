@@ -12,8 +12,8 @@
  * are preserved.
  *
  * WooCommerce is NOT available here — WordPress loads uninstall.php in a
- * clean context before activating the plugin's own bootstrap. We use $wpdb
- * directly.
+ * clean context. We use $wpdb directly with prefixed variable names to
+ * satisfy WordPress coding standards for global scope.
  */
 
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
@@ -31,7 +31,7 @@ $wmop_keys = [
 
 // Fetch all options whose name matches the WC gateway settings pattern.
 // phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
-$rows = $wpdb->get_results(
+$wmop_rows = $wpdb->get_results(
 	$wpdb->prepare(
 		"SELECT option_id, option_name, option_value
 		 FROM {$wpdb->options}
@@ -41,26 +41,26 @@ $rows = $wpdb->get_results(
 );
 // phpcs:enable
 
-if ( empty( $rows ) ) {
+if ( empty( $wmop_rows ) ) {
 	return;
 }
 
-foreach ( $rows as $row ) {
-	$settings = maybe_unserialize( $row->option_value );
+foreach ( $wmop_rows as $wmop_row ) {
+	$wmop_settings = maybe_unserialize( $wmop_row->option_value );
 
-	if ( ! is_array( $settings ) ) {
+	if ( ! is_array( $wmop_settings ) ) {
 		continue;
 	}
 
-	$changed = false;
-	foreach ( $wmop_keys as $key ) {
-		if ( array_key_exists( $key, $settings ) ) {
-			unset( $settings[ $key ] );
-			$changed = true;
+	$wmop_changed = false;
+	foreach ( $wmop_keys as $wmop_key ) {
+		if ( array_key_exists( $wmop_key, $wmop_settings ) ) {
+			unset( $wmop_settings[ $wmop_key ] );
+			$wmop_changed = true;
 		}
 	}
 
-	if ( $changed ) {
-		update_option( $row->option_name, $settings );
+	if ( $wmop_changed ) {
+		update_option( $wmop_row->option_name, $wmop_settings );
 	}
 }

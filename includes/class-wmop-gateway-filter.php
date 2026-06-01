@@ -101,10 +101,9 @@ final class WMOP_Gateway_Filter {
 	 * is not met (guards against frontend manipulation).
 	 */
 	public function validate_on_checkout(): void {
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- WC handles nonce for checkout.
-		$chosen = isset( $_POST['payment_method'] )
-			? sanitize_text_field( wp_unslash( $_POST['payment_method'] ) )
-			: '';
+		// WooCommerce verifies its own nonce on woocommerce_checkout_process before this action fires.
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$chosen = isset( $_POST['payment_method'] ) ? sanitize_text_field( wp_unslash( $_POST['payment_method'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 		if ( '' === $chosen ) {
 			return;

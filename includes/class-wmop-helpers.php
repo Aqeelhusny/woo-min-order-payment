@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Shared utility helpers.
  *
@@ -72,7 +72,7 @@ final class WMOP_Helpers {
 
 		if ( '' === trim( $template ) ) {
 			/* translators: %1$s gateway title, %2$s formatted minimum amount */
-			$template = __( 'A minimum order of {min} is required to use {gateway}.', 'woo-min-order-payment' );
+			$template = __( 'A minimum order of {min} is required to use {gateway}.', 'aqeelhusny-min-order-gateway' );
 		}
 
 		return str_replace(

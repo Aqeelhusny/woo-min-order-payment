@@ -1,14 +1,14 @@
 <?php
 /**
  * Plugin Name:       Aqeel Husny – Minimum Order Per Gateway for WooCommerce
- * Plugin URI:        https://wordpress.org/plugins/woo-min-order-payment/
+ * Plugin URI:        https://wordpress.org/plugins/aqeelhusny-min-order-gateway/
  * Description:       Set a minimum cart value per payment gateway. Gateways not meeting the threshold are hidden or shown disabled at checkout.
  * Version:           1.0.0
  * Author:            Aqeel Husny
  * Author URI:        https://profiles.wordpress.org/aqeelhusny/
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       woo-min-order-payment
+ * Text Domain:       aqeelhusny-min-order-gateway
  * Domain Path:       /languages
  * Requires at least: 7.0
  * Requires PHP:      8.1
@@ -49,7 +49,7 @@ add_action(
 				'admin_notices',
 				static function () {
 					echo '<div class="notice notice-error"><p>'
-						. esc_html__( 'Aqeel Husny – Minimum Order Per Gateway requires WooCommerce to be active.', 'woo-min-order-payment' )
+						. esc_html__( 'Aqeel Husny – Minimum Order Per Gateway requires WooCommerce to be active.', 'aqeelhusny-min-order-gateway' )
 						. '</p></div>';
 				}
 			);

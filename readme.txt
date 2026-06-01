@@ -64,7 +64,7 @@ add_filter( 'wmop_skip_minimum_checks', '__return_false' );
 
 **Manual:**
 
-1. Upload the `woo-min-order-payment` folder to `/wp-content/plugins/`.
+1. Upload the `aqeelhusny-min-order-gateway` folder to `/wp-content/plugins/`.
 2. Activate through **Plugins → Installed Plugins**.
 
 **After activation:**

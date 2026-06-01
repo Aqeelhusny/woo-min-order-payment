@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Main plugin singleton.
  *
@@ -25,8 +25,6 @@ final class WMOP_Plugin {
 	}
 
 	private function __construct() {
-		$this->load_textdomain();
-
 		new WMOP_Compat();
 		new WMOP_Settings();
 		new WMOP_Gateway_Filter();
@@ -42,11 +40,4 @@ final class WMOP_Plugin {
 		}
 	}
 
-	private function load_textdomain(): void {
-		load_plugin_textdomain(
-			'woo-min-order-payment',
-			false,
-			dirname( WMOP_BASENAME ) . '/languages'
-		);
-	}
 }

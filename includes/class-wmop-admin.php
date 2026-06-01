@@ -1,6 +1,6 @@
 <?php
 /**
- * Admin summary section inside WooCommerce → Settings → Payments.
+ * Admin summary section inside WooCommerce Settings > Payments.
  *
  * @package WooMinOrderPayment
  * @since   1.0.0
@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Adds a "Minimum Order Rules" sub-section to WooCommerce → Settings → Payments.
+ * Adds a "Minimum Order Rules" sub-section to WooCommerce > Settings > Payments.
  *
  * Read-only summary of every gateway's WMOP configuration. Editing is done
  * directly on each gateway's own settings screen.
@@ -47,7 +47,7 @@ final class WMOP_Admin {
 	 * Adds the section link inside the Payments settings tab nav.
 	 */
 	public function add_section( array $sections ): array {
-		$sections['wmop_rules'] = __( 'Minimum Order Rules', 'woo-min-order-payment' );
+		$sections['wmop_rules'] = __( 'Minimum Order Rules', 'aqeelhusny-min-order-gateway' );
 		return $sections;
 	}
 
@@ -61,9 +61,9 @@ final class WMOP_Admin {
 
 		return [
 			[
-				'title' => __( 'Minimum Order Rules', 'woo-min-order-payment' ),
+				'title' => __( 'Minimum Order Rules', 'aqeelhusny-min-order-gateway' ),
 				'type'  => 'title',
-				'desc'  => __( "Overview of per-gateway minimum order thresholds. Edit each gateway's threshold on its own settings screen.", 'woo-min-order-payment' ),
+				'desc'  => __( "Overview of per-gateway minimum order thresholds. Edit each gateway's threshold on its own settings screen.", 'aqeelhusny-min-order-gateway' ),
 				'id'    => 'wmop_rules_section_title',
 			],
 			[
@@ -88,22 +88,19 @@ final class WMOP_Admin {
 		$all_gateways = WC()->payment_gateways()->payment_gateways();
 
 		if ( empty( $all_gateways ) ) {
-			echo '<p>' . esc_html__( 'No payment gateways are registered.', 'woo-min-order-payment' ) . '</p>';
+			echo '<p>' . esc_html__( 'No payment gateways are registered.', 'aqeelhusny-min-order-gateway' ) . '</p>';
 			return;
 		}
 
-		// $currency is already-escaped and must NOT go through __() — it's dynamic.
-		$currency = esc_html( get_woocommerce_currency() );
-
 		echo '<table class="widefat striped wmop-summary-table">';
 		echo '<thead><tr>';
-		echo '<th>' . esc_html__( 'Gateway', 'woo-min-order-payment' ) . '</th>';
-		echo '<th>' . esc_html__( 'Enabled', 'woo-min-order-payment' ) . '</th>';
-		echo '<th>' . esc_html__( 'Min Required', 'woo-min-order-payment' ) . '</th>';
-		// Translatable label + dynamic currency code appended separately — never concatenate into __().
-		echo '<th>' . esc_html__( 'Threshold', 'woo-min-order-payment' ) . ' (' . $currency . ')</th>';
-		echo '<th>' . esc_html__( 'On Fail', 'woo-min-order-payment' ) . '</th>';
-		echo '<th>' . esc_html__( 'Settings', 'woo-min-order-payment' ) . '</th>';
+		echo '<th>' . esc_html__( 'Gateway', 'aqeelhusny-min-order-gateway' ) . '</th>';
+		echo '<th>' . esc_html__( 'Enabled', 'aqeelhusny-min-order-gateway' ) . '</th>';
+		echo '<th>' . esc_html__( 'Min Required', 'aqeelhusny-min-order-gateway' ) . '</th>';
+		// Currency code is output-escaped at the point of output — no intermediate variable needed.
+		echo '<th>' . esc_html__( 'Threshold', 'aqeelhusny-min-order-gateway' ) . ' (' . esc_html( get_woocommerce_currency() ) . ')</th>';
+		echo '<th>' . esc_html__( 'On Fail', 'aqeelhusny-min-order-gateway' ) . '</th>';
+		echo '<th>' . esc_html__( 'Settings', 'aqeelhusny-min-order-gateway' ) . '</th>';
 		echo '</tr></thead><tbody>';
 
 		foreach ( $all_gateways as $gateway ) {
@@ -119,15 +116,15 @@ final class WMOP_Admin {
 
 			echo '<td>';
 			if ( $is_enabled ) {
-				echo '<span class="dashicons dashicons-yes-alt" style="color:#46b450;" aria-label="' . esc_attr__( 'Enabled', 'woo-min-order-payment' ) . '"></span>';
+				echo '<span class="dashicons dashicons-yes-alt" style="color:#46b450;" aria-label="' . esc_attr__( 'Enabled', 'aqeelhusny-min-order-gateway' ) . '"></span>';
 			} else {
-				echo '<span class="dashicons dashicons-dismiss" style="color:#dc3232;" aria-label="' . esc_attr__( 'Disabled', 'woo-min-order-payment' ) . '"></span>';
+				echo '<span class="dashicons dashicons-dismiss" style="color:#dc3232;" aria-label="' . esc_attr__( 'Disabled', 'aqeelhusny-min-order-gateway' ) . '"></span>';
 			}
 			echo '</td>';
 
 			echo '<td>';
 			if ( $no_min ) {
-				echo '<em>' . esc_html__( 'No minimum', 'woo-min-order-payment' ) . '</em>';
+				echo '<em>' . esc_html__( 'No minimum', 'aqeelhusny-min-order-gateway' ) . '</em>';
 			} else {
 				echo '<span class="dashicons dashicons-yes" style="color:#46b450;"></span>';
 			}
@@ -139,7 +136,7 @@ final class WMOP_Admin {
 			} elseif ( $min > 0.0 ) {
 				echo esc_html( number_format( $min, 2, '.', ',' ) );
 			} else {
-				echo '<em>' . esc_html__( 'Not set', 'woo-min-order-payment' ) . '</em>';
+				echo '<em>' . esc_html__( 'Not set', 'aqeelhusny-min-order-gateway' ) . '</em>';
 			}
 			echo '</td>';
 
@@ -147,13 +144,13 @@ final class WMOP_Admin {
 			if ( $no_min || $min <= 0.0 ) {
 				echo '&mdash;';
 			} elseif ( 'disable' === $mode ) {
-				echo esc_html__( 'Show disabled', 'woo-min-order-payment' );
+				echo esc_html__( 'Show disabled', 'aqeelhusny-min-order-gateway' );
 			} else {
-				echo esc_html__( 'Hide', 'woo-min-order-payment' );
+				echo esc_html__( 'Hide', 'aqeelhusny-min-order-gateway' );
 			}
 			echo '</td>';
 
-			echo '<td><a href="' . esc_url( $settings_url ) . '">' . esc_html__( 'Edit', 'woo-min-order-payment' ) . '</a></td>';
+			echo '<td><a href="' . esc_url( $settings_url ) . '">' . esc_html__( 'Edit', 'aqeelhusny-min-order-gateway' ) . '</a></td>';
 
 			echo '</tr>';
 		}
