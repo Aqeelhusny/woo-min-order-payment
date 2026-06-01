@@ -1,4 +1,11 @@
 <?php
+/**
+ * Main plugin singleton.
+ *
+ * @package WooMinOrderPayment
+ * @since   1.0.0
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

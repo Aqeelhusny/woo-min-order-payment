@@ -1,5 +1,12 @@
 <?php
 /**
+ * Plugin uninstall handler.
+ *
+ * @package WooMinOrderPayment
+ * @since   1.0.0
+ */
+
+/**
  * Runs on plugin deletion. Removes the wmop_* keys we injected into each
  * gateway's woocommerce_<id>_settings option. All other gateway settings
  * are preserved.

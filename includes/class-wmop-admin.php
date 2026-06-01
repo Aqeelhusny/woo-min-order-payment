@@ -1,4 +1,11 @@
 <?php
+/**
+ * Admin summary section inside WooCommerce → Settings → Payments.
+ *
+ * @package WooMinOrderPayment
+ * @since   1.0.0
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

@@ -1,4 +1,11 @@
 <?php
+/**
+ * Customer-facing checkout notices.
+ *
+ * @package WooMinOrderPayment
+ * @since   1.0.0
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

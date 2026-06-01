@@ -1,4 +1,11 @@
 <?php
+/**
+ * Compatibility shims: HPOS, Blocks, Dokan.
+ *
+ * @package WooMinOrderPayment
+ * @since   1.0.0
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

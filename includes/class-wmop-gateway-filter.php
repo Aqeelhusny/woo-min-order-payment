@@ -1,4 +1,11 @@
 <?php
+/**
+ * Gateway availability filter and checkout validation.
+ *
+ * @package WooMinOrderPayment
+ * @since   1.0.0
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

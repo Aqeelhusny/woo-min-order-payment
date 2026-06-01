@@ -1,4 +1,11 @@
 <?php
+/**
+ * WooCommerce Blocks checkout integration.
+ *
+ * @package WooMinOrderPayment
+ * @since   1.0.0
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
