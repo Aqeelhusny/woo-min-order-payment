@@ -72,7 +72,7 @@ final class WMOP_Helpers {
 
 		if ( '' === trim( $template ) ) {
 			/* translators: %1$s gateway title, %2$s formatted minimum amount */
-			$template = __( 'A minimum order of {min} is required to use {gateway}.', 'aqeelhusny-min-order-gateway' );
+			$template = __( 'A minimum order of {min} is required to use {gateway}.', 'woo-min-order-payment' );
 		}
 
 		return str_replace(

@@ -68,7 +68,7 @@ final class WMOP_Notices {
 		}
 
 		echo '<div class="woocommerce-info wmop-min-order-notice" role="alert">';
-		echo '<p>' . esc_html__( 'Some payment methods require a higher cart total:', 'aqeelhusny-min-order-gateway' ) . '</p>';
+		echo '<p>' . esc_html__( 'Some payment methods require a higher cart total:', 'woo-min-order-payment' ) . '</p>';
 		echo '<ul>';
 
 		foreach ( $hidden as $data ) {
@@ -113,7 +113,7 @@ final class WMOP_Notices {
 		return wp_kses_post(
 			sprintf(
 				/* translators: 1: amount needed to add, 2: minimum order threshold */
-				__( 'No payment methods are available. Add %1$s more to your cart to reach the %2$s minimum order required to check out.', 'aqeelhusny-min-order-gateway' ),
+				__( 'No payment methods are available. Add %1$s more to your cart to reach the %2$s minimum order required to check out.', 'woo-min-order-payment' ),
 				$formatted_add,
 				$formatted_min
 			)

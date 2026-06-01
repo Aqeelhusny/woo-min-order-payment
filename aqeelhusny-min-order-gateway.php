@@ -49,7 +49,7 @@ add_action(
 				'admin_notices',
 				static function () {
 					echo '<div class="notice notice-error"><p>'
-						. esc_html__( 'Aqeel Husny – Minimum Order Per Gateway requires WooCommerce to be active.', 'aqeelhusny-min-order-gateway' )
+						. esc_html__( 'Aqeel Husny – Minimum Order Per Gateway requires WooCommerce to be active.', 'woo-min-order-payment' )
 						. '</p></div>';
 				}
 			);
