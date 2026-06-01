@@ -1,0 +1,49 @@
+/* WooCommerce Minimum Order Per Gateway — checkout styles */
+
+/* Classic checkout: info notice listing hidden gateways */
+.wmop-min-order-notice {
+	margin-bottom: 1em;
+}
+
+.wmop-min-order-notice ul {
+	margin: 0.4em 0 0 1.2em;
+	list-style: disc;
+}
+
+.wmop-min-order-notice ul li {
+	margin-bottom: 0.25em;
+}
+
+/* Classic checkout: inline notice below a disabled gateway */
+.wmop-disabled-notice {
+	display: block;
+	margin-top: 0.4em;
+	color: #8a6d3b;
+	font-size: 0.9em;
+}
+
+/* Blocks checkout: notice rendered by the JS extension */
+.wmop-blocks-notice {
+	padding: 0.75em 1em;
+	margin-bottom: 1em;
+	background: #fff3cd;
+	border-left: 4px solid #ffc107;
+	border-radius: 2px;
+}
+
+.wmop-blocks-notice p {
+	margin: 0 0 0.4em;
+}
+
+.wmop-blocks-notice p:last-child {
+	margin-bottom: 0;
+}
+
+/* Admin summary table */
+.wmop-summary-table {
+	margin-top: 1em;
+}
+
+.wmop-summary-table th {
+	font-weight: 600;
+}
