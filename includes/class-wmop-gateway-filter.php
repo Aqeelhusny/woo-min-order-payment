@@ -39,8 +39,10 @@ final class WMOP_Gateway_Filter {
 		add_action( 'woocommerce_checkout_process', [ $this, 'validate_on_checkout' ] );
 		// Blocks checkout (Store API) never fires woocommerce_checkout_process —
 		// without this hook a "disabled" (still selectable) gateway could take
-		// a below-minimum payment on the block checkout.
-		add_action( 'woocommerce_store_api_checkout_update_order_from_request', [ $this, 'validate_store_api' ], 10, 2 );
+		// a below-minimum payment on the block checkout. This is WC's official
+		// pre-payment validation point (since 9.9): add errors to the WP_Error
+		// and WC raises the checkout error response itself.
+		add_action( 'woocommerce_checkout_validate_order_before_payment', [ $this, 'validate_before_payment' ], 10, 2 );
 	}
 
 	/**
@@ -174,16 +176,19 @@ final class WMOP_Gateway_Filter {
 	/**
 	 * Server-side validation for the Blocks checkout (Store API).
 	 *
-	 * Fires while the draft order is being built from the checkout request,
-	 * before payment is processed. Throwing a RouteException returns a 400
-	 * with the message rendered as an error notice in the block checkout.
+	 * Fires before payment is processed. Adding an error to $errors makes
+	 * WooCommerce reject the checkout request with our message.
 	 *
-	 * @param WC_Order        $order   Draft order being updated.
-	 * @param WP_REST_Request $request Checkout request.
-	 *
-	 * @throws Automattic\WooCommerce\StoreApi\Exceptions\RouteException When the chosen gateway's minimum is not met.
+	 * @param WC_Order $order  Order about to be paid.
+	 * @param WP_Error $errors Error bag WC checks after this action.
 	 */
-	public function validate_store_api( WC_Order $order, $request ): void {
+	public function validate_before_payment( WC_Order $order, WP_Error $errors ): void {
+		// This hook also fires when paying for a previously placed order
+		// (pay-for-order); minimums only apply to live cart checkouts.
+		if ( ! WC()->cart || WC()->cart->is_empty() ) {
+			return;
+		}
+
 		if ( $this->should_skip_checks() ) {
 			return;
 		}
@@ -207,16 +212,14 @@ final class WMOP_Gateway_Filter {
 			return;
 		}
 
-		if ( class_exists( 'Automattic\WooCommerce\StoreApi\Exceptions\RouteException' ) ) {
-			// Plain text: the message travels as JSON, so strip markup and
-			// decode entities (wc_price outputs e.g. &pound;).
-			$message = html_entity_decode(
-				wp_strip_all_tags( WMOP_Helpers::build_notice( $gateway, $min ) ),
-				ENT_QUOTES,
-				get_bloginfo( 'charset' )
-			);
+		// Plain text: the message travels as JSON, so strip markup and
+		// decode entities (wc_price outputs e.g. &pound;).
+		$message = html_entity_decode(
+			wp_strip_all_tags( WMOP_Helpers::build_notice( $gateway, $min ) ),
+			ENT_QUOTES,
+			get_bloginfo( 'charset' )
+		);
 
-			throw new Automattic\WooCommerce\StoreApi\Exceptions\RouteException( 'wmop_minimum_not_met', $message, 400 );
-		}
+		$errors->add( 'wmop_minimum_not_met', $message );
 	}
 }
