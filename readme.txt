@@ -18,9 +18,9 @@ Set a minimum cart value per payment gateway. Gateways not meeting the threshold
 
 = How it works =
 
-1. Go to **WooCommerce → Settings → Payments** and open any gateway.
-2. Scroll to the **Minimum Order Value** section.
-3. Set a threshold, choose whether to hide or disable the gateway when the minimum is not met, and optionally customise the customer notice.
+1. Go to **WooCommerce → Settings → Payments → Minimum Order Rules**.
+2. Set a threshold per gateway, choose whether to hide or disable it when the minimum is not met, and optionally customise the customer notice — all in one table.
+3. Alternatively, open any individual gateway and scroll to its **Minimum Order Value** section; both screens edit the same settings.
 
 = Features =
 
@@ -32,7 +32,7 @@ Set a minimum cart value per payment gateway. Gateways not meeting the threshold
 * Works with Classic (shortcode) checkout and the WooCommerce Blocks checkout.
 * HPOS (High-Performance Order Storage) fully compatible.
 * Works with Stripe, PayPal, Mintpay, COD, BACS, and any other WooCommerce-compatible gateway.
-* Admin overview table at **WooCommerce → Settings → Payments → Minimum Order Rules**.
+* Central rules editor at **WooCommerce → Settings → Payments → Minimum Order Rules** — configure every gateway from one screen.
 * Translation ready.
 
 = Use the `wmop_cart_amount_for_comparison` filter to change what is compared =
@@ -94,7 +94,7 @@ The plugin supports a `wmop_vendor_cart_amount` filter for per-vendor minimum ov
 == Screenshots ==
 
 1. Per-gateway Minimum Order Value section inside the gateway settings screen.
-2. Admin summary table at WooCommerce → Settings → Payments → Minimum Order Rules.
+2. Central rules editor at WooCommerce → Settings → Payments → Minimum Order Rules.
 3. Classic checkout customer notice when gateways are hidden.
 4. Blocks checkout notice in the order summary sidebar.
 

@@ -39,11 +39,28 @@
 	margin-bottom: 0;
 }
 
-/* Admin summary table */
-.wmop-summary-table {
+/* Admin rules editor */
+.wmop-rules-cell {
+	padding: 0;
+}
+
+.wmop-rules-table {
 	margin-top: 1em;
 }
 
-.wmop-summary-table th {
+.wmop-rules-table th {
 	font-weight: 600;
+}
+
+.wmop-rules-table td {
+	vertical-align: middle;
+}
+
+.wmop-input-amount {
+	width: 7em;
+}
+
+.wmop-input-notice {
+	width: 100%;
+	max-width: 30em;
 }
