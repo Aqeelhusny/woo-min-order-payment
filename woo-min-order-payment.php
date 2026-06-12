@@ -59,10 +59,20 @@ add_action(
 
 		require_once WMOP_PATH . 'includes/class-wmop-helpers.php';
 		require_once WMOP_PATH . 'includes/class-wmop-compat.php';
-		require_once WMOP_PATH . 'includes/class-wmop-settings.php';
 		require_once WMOP_PATH . 'includes/class-wmop-gateway-filter.php';
 		require_once WMOP_PATH . 'includes/class-wmop-notices.php';
-		require_once WMOP_PATH . 'includes/class-wmop-admin.php';
+
+		// Admin-only components. The settings class is also needed on WC REST
+		// requests (gateway settings endpoints). WC()->is_rest_api_request()
+		// is URI-based, so it already works at plugins_loaded (the WP core
+		// REST flag is only set later, at parse_request).
+		if ( is_admin() || WC()->is_rest_api_request() ) {
+			require_once WMOP_PATH . 'includes/class-wmop-settings.php';
+		}
+
+		if ( is_admin() ) {
+			require_once WMOP_PATH . 'includes/class-wmop-admin.php';
+		}
 
 		// Guard: only load the Blocks integration when the interface is actually available.
 		// Implementing a missing interface causes a PHP fatal at class-parse time.

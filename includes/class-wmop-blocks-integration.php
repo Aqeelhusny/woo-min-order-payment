@@ -126,25 +126,27 @@ final class WMOP_Blocks_Integration implements IntegrationInterface {
 	 * @return array<string, mixed>
 	 */
 	public function get_script_data(): array {
+		if ( ! WC()->cart ) {
+			return [ 'unavailable_gateways' => [] ];
+		}
+
+		// Make sure the availability filter has run for the current cart state —
+		// script data can be generated before anything else resolves gateways.
+		WC()->payment_gateways()->get_available_payment_gateways();
+
 		$unavailable = [];
 
-		if ( WC()->session ) {
-			$raw = WC()->session->get( 'wmop_unavailable_gateways', [] );
-
-			if ( is_array( $raw ) ) {
-				foreach ( $raw as $data ) {
-					if ( ( $data['mode'] ?? 'hide' ) !== 'hide' ) {
-						continue;
-					}
-
-					$unavailable[] = [
-						'id'        => esc_attr( $data['id'] ?? '' ),
-						'label'     => esc_html( $data['label'] ?? '' ),
-						'formatted' => wp_strip_all_tags( $data['formatted'] ?? '' ),
-						'notice'    => wp_kses_post( $data['notice'] ?? '' ),
-					];
-				}
+		foreach ( WMOP_Gateway_Filter::get_unavailable() as $data ) {
+			if ( ( $data['mode'] ?? 'hide' ) !== 'hide' ) {
+				continue;
 			}
+
+			$unavailable[] = [
+				'id'        => esc_attr( $data['id'] ?? '' ),
+				'label'     => esc_html( $data['label'] ?? '' ),
+				'formatted' => wp_strip_all_tags( $data['formatted'] ?? '' ),
+				'notice'    => wp_kses_post( $data['notice'] ?? '' ),
+			];
 		}
 
 		return [ 'unavailable_gateways' => $unavailable ];

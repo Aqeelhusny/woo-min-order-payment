@@ -16,6 +16,24 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 final class WMOP_Gateway_Filter {
 
+	/**
+	 * Gateways unavailable in the current request, keyed by gateway ID.
+	 * Request-local on purpose: the notice layer consumes this in the same
+	 * request, so persisting it to the WC session would only add DB writes.
+	 *
+	 * @var array<string, array<string, mixed>>
+	 */
+	private static array $unavailable = [];
+
+	/**
+	 * Returns the gateways hidden/disabled by the last filter run this request.
+	 *
+	 * @return array<string, array<string, mixed>>
+	 */
+	public static function get_unavailable(): array {
+		return self::$unavailable;
+	}
+
 	public function __construct() {
 		add_filter( 'woocommerce_available_payment_gateways', [ $this, 'filter_gateways' ], 20 );
 		add_action( 'woocommerce_checkout_process', [ $this, 'validate_on_checkout' ] );
@@ -110,10 +128,7 @@ final class WMOP_Gateway_Filter {
 			}
 		}
 
-		// Store unavailable gateway data in the WC session for the notice layer.
-		if ( WC()->session ) {
-			WC()->session->set( 'wmop_unavailable_gateways', $unavailable );
-		}
+		self::$unavailable = $unavailable;
 
 		return $gateways;
 	}

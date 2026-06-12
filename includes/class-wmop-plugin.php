@@ -26,11 +26,16 @@ final class WMOP_Plugin {
 
 	private function __construct() {
 		new WMOP_Compat();
-		new WMOP_Settings();
 		new WMOP_Gateway_Filter();
 		new WMOP_Notices();
 
-		if ( is_admin() ) {
+		// Admin/REST-only classes are conditionally required by the main
+		// plugin file — instantiate them only when they were loaded.
+		if ( class_exists( 'WMOP_Settings' ) ) {
+			new WMOP_Settings();
+		}
+
+		if ( class_exists( 'WMOP_Admin' ) ) {
 			new WMOP_Admin();
 		}
 

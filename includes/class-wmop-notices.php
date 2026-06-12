@@ -48,11 +48,10 @@ final class WMOP_Notices {
 	 * were hidden and why (hidden mode only — disabled-mode gateways show inline).
 	 */
 	public function render_classic_notice(): void {
-		if ( ! WC()->session ) {
-			return;
-		}
-
-		$unavailable = WC()->session->get( 'wmop_unavailable_gateways', [] );
+		// Available gateways are always computed before this hook fires
+		// (wc_checkout_payment resolves them before rendering payment.php),
+		// so the request-local data is already populated.
+		$unavailable = WMOP_Gateway_Filter::get_unavailable();
 
 		if ( empty( $unavailable ) ) {
 			return;
@@ -87,11 +86,7 @@ final class WMOP_Notices {
 	 * @return string
 	 */
 	public function no_gateways_text( string $message ): string {
-		if ( ! WC()->session ) {
-			return $message;
-		}
-
-		$unavailable = WC()->session->get( 'wmop_unavailable_gateways', [] );
+		$unavailable = WMOP_Gateway_Filter::get_unavailable();
 
 		if ( empty( $unavailable ) ) {
 			return $message;

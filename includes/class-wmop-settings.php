@@ -29,8 +29,18 @@ final class WMOP_Settings {
 
 	/**
 	 * Walks every registered gateway and registers a form_fields filter for each.
+	 *
+	 * Admin and WC REST requests only: enumerating gateways instantiates every
+	 * gateway object (WC core keeps this lazy), which is too expensive to do on
+	 * every frontend pageload. The frontend never reads these form fields —
+	 * all runtime get_option() calls pass explicit defaults that match the
+	 * field defaults injected here.
 	 */
 	public function register_form_field_filters(): void {
+		if ( ! is_admin() && ! WC()->is_rest_api_request() ) {
+			return;
+		}
+
 		$gateways = WC()->payment_gateways()->payment_gateways();
 
 		foreach ( $gateways as $gateway ) {

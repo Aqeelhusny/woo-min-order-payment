@@ -26,12 +26,20 @@ final class WMOP_Admin {
 	}
 
 	/**
-	 * Enqueues plugin styles on WC settings pages only.
+	 * Enqueues plugin styles on our summary section only.
 	 *
 	 * @param string $hook Current admin page hook.
 	 */
 	public function enqueue_admin_styles( string $hook ): void {
 		if ( 'woocommerce_page_wc-settings' !== $hook ) {
+			return;
+		}
+
+		// Read-only routing check on a screen WC already capability-gates.
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$section = isset( $_GET['section'] ) ? sanitize_text_field( wp_unslash( $_GET['section'] ) ) : '';
+
+		if ( 'wmop_rules' !== $section ) {
 			return;
 		}
 
