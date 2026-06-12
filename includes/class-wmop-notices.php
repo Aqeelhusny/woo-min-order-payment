@@ -45,7 +45,7 @@ final class WMOP_Notices {
 
 	/**
 	 * Renders an info notice above the payment radio list showing which gateways
-	 * were hidden and why (hidden mode only â€” disabled-mode gateways show inline).
+	 * were hidden and why (hidden mode only — disabled-mode gateways show inline).
 	 */
 	public function render_classic_notice(): void {
 		if ( ! WC()->session ) {

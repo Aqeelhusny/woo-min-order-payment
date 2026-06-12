@@ -1,5 +1,5 @@
 {
-	"name": "aqeelhusny-min-order-gateway",
+	"name": "woo-min-order-payment",
 	"version": "1.0.0",
 	"description": "WooCommerce Minimum Order Per Gateway — JS build for Checkout Blocks integration",
 	"private": true,
@@ -7,9 +7,10 @@
 		"build": "wp-scripts build src/checkout-blocks/index.js --output-path=assets/js --output-filename=wmop-checkout-blocks.js",
 		"start": "wp-scripts start src/checkout-blocks/index.js --output-path=assets/js --output-filename=wmop-checkout-blocks.js",
 		"lint:js": "wp-scripts lint-js src/",
-		"makepot": "wp-pot --src \"**/*.php\" --dest \"languages/aqeelhusny-min-order-gateway.pot\" --domain \"aqeelhusny-min-order-gateway\" --package \"Aqeel Husny - Minimum Order Per Gateway for WooCommerce\" --bug-report \"https://wordpress.org/support/plugin/aqeelhusny-min-order-gateway/\""
+		"makepot": "wp-pot --src \"**/*.php\" --dest-file \"languages/woo-min-order-payment.pot\" --domain \"woo-min-order-payment\" --package \"Minimum Order Per Gateway for WooCommerce\" --bug-report \"https://wordpress.org/support/plugin/woo-min-order-payment/\""
 	},
 	"devDependencies": {
+		"@woocommerce/dependency-extraction-webpack-plugin": "^4.0.0",
 		"@wordpress/scripts": "^32.0.0",
 		"wp-pot-cli": "^1.5.0"
 	}

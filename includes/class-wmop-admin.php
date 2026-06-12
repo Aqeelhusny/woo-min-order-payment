@@ -106,7 +106,7 @@ final class WMOP_Admin {
 		foreach ( $all_gateways as $gateway ) {
 			$is_enabled   = 'yes' === $gateway->get_option( 'enabled', 'no' );
 			$no_min       = 'yes' === $gateway->get_option( 'wmop_no_min_required', 'no' );
-			$min          = WMOP_Helpers::parse_min_amount( $gateway->get_option( 'wmop_min_amount', '' ) );
+			$min          = WMOP_Helpers::parse_min_amount( (string) $gateway->get_option( 'wmop_min_amount', '' ) );
 			$mode         = $gateway->get_option( 'wmop_hide_or_disable', 'hide' );
 			$settings_url = admin_url( 'admin.php?page=wc-settings&tab=checkout&section=' . rawurlencode( $gateway->id ) );
 
@@ -125,8 +125,10 @@ final class WMOP_Admin {
 			echo '<td>';
 			if ( $no_min ) {
 				echo '<em>' . esc_html__( 'No minimum', 'woo-min-order-payment' ) . '</em>';
+			} elseif ( $min > 0.0 ) {
+				echo '<span class="dashicons dashicons-yes" style="color:#46b450;" aria-label="' . esc_attr__( 'Minimum enforced', 'woo-min-order-payment' ) . '"></span>';
 			} else {
-				echo '<span class="dashicons dashicons-yes" style="color:#46b450;"></span>';
+				echo '<em>' . esc_html__( 'Not set', 'woo-min-order-payment' ) . '</em>';
 			}
 			echo '</td>';
 
@@ -134,7 +136,7 @@ final class WMOP_Admin {
 			if ( $no_min ) {
 				echo '&mdash;';
 			} elseif ( $min > 0.0 ) {
-				echo esc_html( number_format( $min, 2, '.', ',' ) );
+				echo esc_html( wc_format_localized_price( number_format( $min, wc_get_price_decimals(), '.', '' ) ) );
 			} else {
 				echo '<em>' . esc_html__( 'Not set', 'woo-min-order-payment' ) . '</em>';
 			}

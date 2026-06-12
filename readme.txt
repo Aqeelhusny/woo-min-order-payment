@@ -1,11 +1,11 @@
-=== Aqeel Husny – Minimum Order Per Gateway for WooCommerce ===
+=== Minimum Order Per Gateway for WooCommerce ===
 Contributors: aqeelhusny
 Tags: woocommerce, payment gateway, minimum order, checkout, stripe
 Requires at least: 7.0
 Tested up to: 7.0
 Requires PHP: 8.1
 Stable tag: 1.0.0
-WC requires at least: 9.5
+WC requires at least: 10.0
 WC tested up to: 10.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -14,7 +14,7 @@ Set a minimum cart value per payment gateway. Gateways not meeting the threshold
 
 == Description ==
 
-**Aqeel Husny – Minimum Order Per Gateway for WooCommerce** lets store admins configure a minimum cart subtotal for each enabled payment gateway independently.
+**Minimum Order Per Gateway for WooCommerce** lets store admins configure a minimum cart subtotal for each enabled payment gateway independently.
 
 = How it works =
 
@@ -48,7 +48,7 @@ add_filter( 'wmop_cart_amount_for_comparison', function( $amount, $cart ) {
 
 = Skipping minimum checks for subscription renewals =
 
-Renewal payments bypass the check by default via the `wmop_skip_minimum_checks` filter. Override this:
+When WooCommerce Subscriptions is active, carts containing a renewal payment bypass the minimum check by default. Use the `wmop_skip_minimum_checks` filter to change this — for example, to enforce minimums on renewals too:
 
 `
 add_filter( 'wmop_skip_minimum_checks', '__return_false' );
@@ -64,7 +64,7 @@ add_filter( 'wmop_skip_minimum_checks', '__return_false' );
 
 **Manual:**
 
-1. Upload the `aqeelhusny-min-order-gateway` folder to `/wp-content/plugins/`.
+1. Upload the `woo-min-order-payment` folder to `/wp-content/plugins/`.
 2. Activate through **Plugins → Installed Plugins**.
 
 **After activation:**

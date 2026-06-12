@@ -1,0 +1,143 @@
+# Copyright (C) 2026 Minimum Order Per Gateway for WooCommerce
+# This file is distributed under the same license as the Minimum Order Per Gateway for WooCommerce package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Minimum Order Per Gateway for WooCommerce\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-06-12 03:39+0000\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woo-min-order-payment/\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../includes/class-wmop-admin.php:50, ../includes/class-wmop-admin.php:64
+msgid "Minimum Order Rules"
+msgstr ""
+
+#: ../includes/class-wmop-admin.php:66
+msgid "Overview of per-gateway minimum order thresholds. Edit each gateway's threshold on its own settings screen."
+msgstr ""
+
+#: ../includes/class-wmop-admin.php:91
+msgid "No payment gateways are registered."
+msgstr ""
+
+#: ../includes/class-wmop-admin.php:97
+msgid "Gateway"
+msgstr ""
+
+#: ../includes/class-wmop-admin.php:98, ../includes/class-wmop-admin.php:119
+msgid "Enabled"
+msgstr ""
+
+#: ../includes/class-wmop-admin.php:99
+msgid "Min Required"
+msgstr ""
+
+#: ../includes/class-wmop-admin.php:101
+msgid "Threshold"
+msgstr ""
+
+#: ../includes/class-wmop-admin.php:102
+msgid "On Fail"
+msgstr ""
+
+#: ../includes/class-wmop-admin.php:103
+msgid "Settings"
+msgstr ""
+
+#: ../includes/class-wmop-admin.php:121
+msgid "Disabled"
+msgstr ""
+
+#: ../includes/class-wmop-admin.php:131, ../includes/class-wmop-admin.php:141
+msgid "Not set"
+msgstr ""
+
+#: ../includes/class-wmop-admin.php:129
+msgid "Minimum enforced"
+msgstr ""
+
+#: ../includes/class-wmop-admin.php:127
+msgid "No minimum"
+msgstr ""
+
+#: ../includes/class-wmop-admin.php:151
+msgid "Hide"
+msgstr ""
+
+#: ../includes/class-wmop-admin.php:149
+msgid "Show disabled"
+msgstr ""
+
+#: ../includes/class-wmop-admin.php:155
+msgid "Edit"
+msgstr ""
+
+#. translators: %1$s gateway title, %2$s formatted minimum amount
+#: ../includes/class-wmop-helpers.php:75, ../includes/class-wmop-settings.php:94
+msgid "A minimum order of {min} is required to use {gateway}."
+msgstr ""
+
+#: ../includes/class-wmop-notices.php:71
+msgid "Some payment methods require a higher cart total:"
+msgstr ""
+
+#. translators: 1: amount needed to add, 2: minimum order threshold
+#: ../includes/class-wmop-notices.php:116
+msgid "No payment methods are available. Add %1$s more to your cart to reach the %2$s minimum order required to check out."
+msgstr ""
+
+#: ../includes/class-wmop-settings.php:52
+msgid "Minimum Order Value"
+msgstr ""
+
+#: ../includes/class-wmop-settings.php:54
+msgid "Restrict this payment method based on the cart subtotal (excl. tax and shipping)."
+msgstr ""
+
+#: ../includes/class-wmop-settings.php:58
+msgid "No minimum required"
+msgstr ""
+
+#: ../includes/class-wmop-settings.php:60
+msgid "Always allow this gateway regardless of cart value"
+msgstr ""
+
+#: ../includes/class-wmop-settings.php:65
+msgid "Minimum order amount"
+msgstr ""
+
+#. translators: %s: store currency code, e.g. USD
+#: ../includes/class-wmop-settings.php:69
+msgid "Amount in %s. Leave blank or 0 to disable."
+msgstr ""
+
+#: ../includes/class-wmop-settings.php:81
+msgid "When minimum not met"
+msgstr ""
+
+#: ../includes/class-wmop-settings.php:84
+msgid "Hide this gateway completely"
+msgstr ""
+
+#: ../includes/class-wmop-settings.php:85
+msgid "Show disabled with a notice"
+msgstr ""
+
+#: ../includes/class-wmop-settings.php:91
+msgid "Customer notice"
+msgstr ""
+
+#: ../includes/class-wmop-settings.php:93
+msgid "Placeholders: {min} = formatted minimum, {currency} = currency code, {gateway} = gateway name."
+msgstr ""
+
+#: ../woo-min-order-payment.php:53
+msgid "Minimum Order Per Gateway for WooCommerce requires WooCommerce to be active."
+msgstr ""

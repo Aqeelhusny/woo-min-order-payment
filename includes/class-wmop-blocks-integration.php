@@ -27,13 +27,10 @@ use Automattic\WooCommerce\Blocks\Integrations\IntegrationInterface;
 final class WMOP_Blocks_Integration implements IntegrationInterface {
 
 	public function __construct() {
-		add_action( 'woocommerce_blocks_loaded', [ $this, 'register' ] );
-	}
-
-	/**
-	 * Registers this integration with the WC Blocks integration registry.
-	 */
-	public function register(): void {
+		// woocommerce_blocks_loaded fires at plugins_loaded priority 5, before this
+		// plugin loads at priority 10, so we cannot use it as a wrapper here.
+		// These two actions fire during IntegrationRegistry::initialize() on init,
+		// which is safely after plugins_loaded.
 		add_action(
 			'woocommerce_blocks_checkout_block_registration',
 			function ( $integration_registry ) {
@@ -76,10 +73,17 @@ final class WMOP_Blocks_Integration implements IntegrationInterface {
 			? require $asset_file
 			: [ 'dependencies' => [], 'version' => WMOP_VERSION ];
 
+		// The bundle imports @woocommerce/settings and @woocommerce/blocks-checkout
+		// as webpack externals (window.wc.*). Those globals are only guaranteed
+		// when their script handles are declared as dependencies.
+		$dependencies = array_values(
+			array_unique( array_merge( $asset['dependencies'], [ 'wc-settings', 'wc-blocks-checkout' ] ) )
+		);
+
 		wp_register_script(
 			'wmop-checkout-blocks',
 			WMOP_URL . 'assets/js/wmop-checkout-blocks.js',
-			$asset['dependencies'],
+			$dependencies,
 			$asset['version'],
 			true
 		);

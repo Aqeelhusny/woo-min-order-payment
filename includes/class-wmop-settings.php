@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * Uses the per-gateway woocommerce_settings_api_form_fields_{$id} filter so
  * settings appear directly on each gateway's own settings screen and are
- * saved through WooCommerce's existing nonce-protected settings flow â€”
+ * saved through WooCommerce's existing nonce-protected settings flow —
  * no custom save handler or extra DB table needed.
  */
 final class WMOP_Settings {
